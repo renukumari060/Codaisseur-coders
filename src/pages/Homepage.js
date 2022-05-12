@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import axios from "axios";
 import "./Homepage.css";
-
+import { Link } from "react-router-dom";
 import { selectFeedPosts } from "../store/feed/selectors";
 import { fetchPosts } from "../store/feed/actions";
 
-const API_URL = `https://codaisseur-coders-network.herokuapp.com`;
+//const API_URL = `https://codaisseur-coders-network.herokuapp.com`;
 
 export default function Homepage() {
-  const [data, setData] = useState({
-    loading: true,
-    posts: [],
-  });
+  // const [data, setData] = useState({
+  //   loading: true,
+  //   posts: [],
+  // });
 
   //   async function fetchPosts() {
   //     setData({ ...data, loading: true }); //before fetching data, loading is set to true
@@ -41,7 +40,10 @@ export default function Homepage() {
       {posts.map((post) => {
         return (
           <div key={post.id}>
-            <h3>{post.title}</h3>
+            {/* <h3>{post.title}</h3> */}
+            <h3>
+              <Link to={`/post/${post.id}`}>{post.title}</Link>
+            </h3>
             <p className="meta">
               {moment(post.createdAt).format("DD-MM-YYYY")} &bull;{" "}
               <span className="tags">
